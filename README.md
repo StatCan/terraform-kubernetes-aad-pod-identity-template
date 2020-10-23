@@ -4,6 +4,13 @@
 
 This module allows for the deployment and management of AzureIdentity and AzureIdentityBinding objects into a Kubenertes cluster which has Active Directory Pod Identity installed.
 
+## Requirements
+
+This module requires:
+
+* kubectl binary
+* a shell environment (cat and pipes)
+
 ## Security Controls
 
 The following security controls can be met through configuration of this template:
