@@ -55,4 +55,4 @@ module "aad_identity_test" {
 
 | Date     | Release | Change                                       |
 | -------- | ------- | -------------------------------------------- |
-| 20201022 | v1.0.0  | Improvements to documentation and formatting |
+| 20201022 | v1.0.0  | Initial release.                             |
