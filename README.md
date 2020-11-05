@@ -8,6 +8,7 @@ This module allows for the deployment and management of AzureIdentity and AzureI
 
 This module requires:
 
+* AAD Pod Identity >= 1.6
 * kubectl binary
 * a shell environment (cat and pipes)
 
@@ -44,15 +45,18 @@ module "aad_identity_test" {
 
 ## Variables Values
 
-| Name         | Type   | Required | Value                                               |
-| ------------ | ------ | -------- | --------------------------------------------------- |
-| dependencies | string | yes      | Dependency name refering to namespace module        |
-| namespace    | string | yes      | The namespace Helm will install the chart under     |
-| resource_id  | string | yes      | The resource id to be used for the Managed Identity |
-| client_id    | string | yes      | The client id to be used for the Managed Identity   |
+| Name         | Type   | Required             | Value                                                                                                                                                                |
+| ------------ | ------ | -------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| client_id    | string | yes                  | The client id to be used for the Managed Identity                                                                                                                    |
+| dependencies | string | yes                  | Dependency name refering to namespace module                                                                                                                         |
+| namespace    | string | yes                  | The namespace Helm will install the chart under                                                                                                                      |
+| resource_id  | string | For type:0           | The resource id to be used for the Managed Identity                                                                                                                  |
+| secret_name  | string | For type:1 or type:2 | The name of the secret from which to retrieve the certificate or client_secret.                                                                                      |
+| tenant_id    | string | For type:1 or type:2 | The ID of the Azure Tenant where the Service Principal is located.                                                                                                   |
+| type         | int    | yes                  | The type of identity to use. Set type: 0 for user-assigned MSI, type: 1 for Service Principal with client secret, or type: 2 for Service Principal with certificate. |
 
 ## History
 
-| Date     | Release | Change                                       |
-| -------- | ------- | -------------------------------------------- |
-| 20201022 | v1.0.0  | Initial release.                             |
+| Date     | Release | Change           |
+| -------- | ------- | ---------------- |
+| 20201022 | v1.0.0  | Initial release. |

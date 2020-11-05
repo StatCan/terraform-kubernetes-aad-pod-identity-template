@@ -26,10 +26,14 @@ metadata:
   namespace: "${var.namespace}"
   annotations:
     aadpodidentity.k8s.io/Behavior: namespaced
-spec:
+spec:%{if var.type == 0}
   type: 0
-  ResourceID: "${var.resource_id}"
-  ClientID: "${var.client_id}"
+  resourceID: "${var.resource_id}"
+  clientID: "${var.client_id}"%{endif}%{if var.type == 1 || var.type == 2}
+  type: ${var.type}
+  tenantID: "${var.tenant_id}"
+  clientID: "${var.client_id}"
+  clientPassword: {"name":"${var.secret_name}","namespace":"${var.namespace}"}%{endif}
 ---
 apiVersion: aadpodidentity.k8s.io/v1
 kind: AzureIdentityBinding
@@ -37,8 +41,8 @@ metadata:
   name: "${var.identity_name}"
   namespace: "${var.namespace}"
 spec:
-  AzureIdentity: "${var.identity_name}"
-  Selector: "${var.identity_name}"
+  azureIdentity: "${var.identity_name}"
+  selector: "${var.identity_name}"
 EOF
 }
 
