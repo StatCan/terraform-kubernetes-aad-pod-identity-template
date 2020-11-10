@@ -30,7 +30,7 @@ The following security controls can be met through configuration of this templat
 
 ```terraform
 module "aad_identity_test" {
-  source = "git::gitlab.k8s.cloud.statcan.ca/cloudnative/terraform/modules/terraform-kubernetes-aad-pod-identity-template?ref=v1.0.0
+  source = "git::gitlab.k8s.cloud.statcan.ca/cloudnative/terraform/modules/terraform-kubernetes-aad-pod-identity-template?ref=v1.0.0"
 
   dependencies = [
     "${module.namespace_default.depended_on}",
