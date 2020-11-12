@@ -36,6 +36,7 @@ module "aad_identity_test" {
     "${module.namespace_default.depended_on}",
   ]
 
+  type = 0
   identity_name = "test"
   namespace     = "default"
   resource_id   = "/subscriptions/<subscription_id>/resourceGroups/<resource_group>/providers/Microsoft.ManagedIdentity/userAssignedIdentities/<named_identity>"
