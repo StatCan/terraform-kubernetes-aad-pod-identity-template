@@ -27,7 +27,7 @@ The following security controls can be met through configuration of this templat
 * None
 
 ## Usage
-
+Add the following code block to the desired Terraform namespace definition:
 ```terraform
 module "aad_identity_test" {
   source = "git::https://gitlab.k8s.cloud.statcan.ca/cloudnative/terraform/modules/terraform-kubernetes-aad-pod-identity-template?ref=v1.0.0"
@@ -43,6 +43,7 @@ module "aad_identity_test" {
   client_id     = "<client_id>"
 }
 ```
+The **Client ID** and **Resource ID** are to be provided by the client for their managed identities.
 
 ## Variables Values
 
