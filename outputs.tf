@@ -5,3 +5,13 @@
 output "depended_on" {
   value = "${null_resource.dependency_setter.id}-${timestamp()}"
 }
+
+output "namespace" {
+  value = var.namespace
+  description = "The namespace the identity resides."
+}
+
+output "identity_name" {
+  value = var.identity_name
+  description = "The name of the identity."
+}

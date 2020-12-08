@@ -7,7 +7,7 @@
 # module:
 resource "null_resource" "dependency_getter" {
   triggers = {
-    my_dependencies = "${join(",", var.dependencies)}"
+    my_dependencies = join(",", var.dependencies)
   }
 
   lifecycle {
