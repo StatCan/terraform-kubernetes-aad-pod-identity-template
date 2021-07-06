@@ -30,7 +30,7 @@ The following security controls can be met through configuration of this templat
 Add the following code block to the desired Terraform namespace definition:
 ```terraform
 module "aad_identity_test" {
-  source = "git::https://gitlab.k8s.cloud.statcan.ca/cloudnative/terraform/modules/terraform-kubernetes-aad-pod-identity-template?ref=v1.1.0"
+  source = "git::https://github.com/canada-ca-terraform-modules/terraform-kubernetes-aad-pod-identity-template?ref=v1.1.0"
 
   dependencies = [
     module.namespace_default.depended_on,
@@ -50,7 +50,6 @@ The **Client ID** and **Resource ID** are to be provided by the client for their
 | Name          | Type   | Required             | Value                                                                                                                                                                |
 | ------------- | ------ | -------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | client_id     | string | yes                  | The client id to be used for the Managed Identity                                                                                                                    |
-| dependencies  | string | yes                  | Dependency name refering to namespace module                                                                                                                         |
 | identity_name | string | yes                  | The name of the identity in the Cluster.                                                                                                                             |
 | namespace     | string | yes                  | The namespace Helm will install the chart under                                                                                                                      |
 | resource_id   | string | For type:0           | The resource id to be used for the Managed Identity                                                                                                                  |

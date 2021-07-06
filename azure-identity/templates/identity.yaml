@@ -1,0 +1,27 @@
+apiVersion: aadpodidentity.k8s.io/v1
+kind: AzureIdentity
+metadata:
+  name: {{ include "azure-identity.fullname" . }}
+  labels:
+    {{- include "azure-identity.labels" . | nindent 4 }}
+  annotations:
+    aadpodidentity.k8s.io/Behavior: namespaced
+spec:
+  type: {{ .Values.type }}
+  resourceID: {{ .Values.resource_id }}
+  clientID: {{ .Values.client_id }}
+  {{- if (or (eq .Values.type 1) (eq .Values.type 2)) }}
+  tenantID: {{ .Values.tenant_id }}
+  clientID: {{ .Values.client_id }}
+  clientPassword: {{ .Values.client_password }}
+  {{- end }}
+---
+apiVersion: aadpodidentity.k8s.io/v1
+kind: AzureIdentityBinding
+metadata:
+  name: {{ include "azure-identity.fullname" . }}
+  labels:
+    {{- include "azure-identity.labels" . | nindent 4 }}
+spec:
+  azureIdentity: {{ include "azure-identity.fullname" . }}
+  selector: {{ .Values.identity_name }}
