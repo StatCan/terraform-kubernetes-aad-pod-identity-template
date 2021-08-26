@@ -30,11 +30,7 @@ The following security controls can be met through configuration of this templat
 Add the following code block to the desired Terraform namespace definition:
 ```terraform
 module "aad_identity_test" {
-  source = "git::https://gitlab.k8s.cloud.statcan.ca/cloudnative/terraform/modules/terraform-kubernetes-aad-pod-identity-template?ref=v1.1.0"
-
-  dependencies = [
-    module.namespace_default.depended_on,
-  ]
+  source = "git::https://github.com/StatCan/terraform-kubernetes-aad-pod-identity-template.git?ref=v2.0.0"
 
   type = 0
   identity_name = "test"
@@ -50,7 +46,6 @@ The **Client ID** and **Resource ID** are to be provided by the client for their
 | Name          | Type   | Required             | Value                                                                                                                                                                |
 | ------------- | ------ | -------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | client_id     | string | yes                  | The client id to be used for the Managed Identity                                                                                                                    |
-| dependencies  | string | yes                  | Dependency name refering to namespace module                                                                                                                         |
 | identity_name | string | yes                  | The name of the identity in the Cluster.                                                                                                                             |
 | namespace     | string | yes                  | The namespace Helm will install the chart under                                                                                                                      |
 | resource_id   | string | For type:0           | The resource id to be used for the Managed Identity                                                                                                                  |
@@ -64,3 +59,4 @@ The **Client ID** and **Resource ID** are to be provided by the client for their
 | -------- | ------- | -------------------------------------------- |
 | 20201022 | v1.0.0  | Initial release.                             |
 | 20201022 | v1.1.0  | Add outputs for namespace and identity_name. |
+| 20210824 | v2.0.0  | Update module to align with Terraform v0.13  |
